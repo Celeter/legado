@@ -19,9 +19,9 @@ jobs:
       ylogin: ${{ secrets.YLOGIN }}
       phpdisk_info: ${{ secrets.PHPDISK_INFO }}
       # 蓝奏云里的文件夹ID（阅读3测试版:2670621）
-      LANZOU_FOLDER_ID: '2670621'
+      LANZOU_FOLDER_ID: '3133827'
       # 是否上传到artifact
-      UPLOAD_ARTIFACT: 'true'
+      UPLOAD_ARTIFACT: 'false'
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
@@ -57,7 +57,7 @@ jobs:
           name: legado apk
           path: ${{ github.workspace }}/app/build/outputs/apk/app/release/*.apk
       - name: Upload App To Lanzou
-        if: ${{ env.PHPDISK_INFO }}
+        if: ${{ env.ylogin }}
         run: |
           path="$GITHUB_WORKSPACE/app/build/outputs/apk/app/release"
           files=$(ls $path)
